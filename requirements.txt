@@ -1,2 +1,3 @@
 nnfs
 numpy
+matplotlib
