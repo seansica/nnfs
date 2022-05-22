@@ -28,4 +28,13 @@
     - Weight polarity (negative vs positive weight) determines the direction of the graphed fn
         - Negative weight will yield the neuron *deactivation* point
         - The point at which y=x (i.e. we cross the x-axis) is the point at which the fn deactivates when weight is negative
-
+    - Is unbounded, not normalized, and exclusive
+        - "not normalized" means the values can be anything; they are w/o context
+        - exclusive" means each output is independent of the others
+- Softmax Activation Function
+    - Used for classification
+    - Can take in non-normalized, or uncalibrated inputs and produce a normalized distribution of probabilities for our classes
+    - In other words, it produce **confidence scores** for each class. All scores in the scalar output will sum to 1. The predicted class is associated with whichever neuron returned the largest score.
+    - To calculate probabilities, we need non-negative numbers. That is why we exponentiate them in Softmax fn. An exponentiated value is always positive.
+    - There are two main pervasive challenges with neural networks: “dead neurons” and very large numbers (referred to as “exploding” values).
+    - The exponential function used in softmax activation is one of the sources of exploding values. Consider, for example, an input value of 1000. Exponentiating 1000 (e ** 1000) would cause an overflow error.
