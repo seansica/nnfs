@@ -1,0 +1,28 @@
+# Notes
+
+- The loss function, also referred to as the cost function, is the algorithm that quantifies how wrong a model is. Loss is the measure of this metric. Since loss is the model’s error, we ideally want it to be 0.
+- Don't use argmax to calculate loss.
+- Strive to increase correct confidence and decrease misplaced confidence.
+- **Categorical Cross-Entropy Loss**
+    - Explicitely compares a "ground-truth" probability (*y* or "targets") and some predicted distribution (*y-hat* or "predictions").
+    - Very commonly used w/ Softmax activation fn.
+    - L = -1 * y<sub>i</sub> <sub>j</sub>log(y-hat<sub>i,j</sub>)
+        - L = sample loss value
+        - i = i-th sample in set
+        - j = label/output index
+        - y = target values
+        - y-hat = predicted values
+    - Simplified: L<sub>i</sub> = -log(*y-hat*<sub>i,k</sub>) where k is an index of "true" probability
+    - Cross-entropy != log loss
+        - log loss error functions are applied to the output of *binary* logisitic regression models (where there are only 2 classes) (i.e., *was the output correct or not?* 0 or 1)
+        - Cross-entropy compares two probability distributions (i.e. *is output X's confidence scores more accurate than output Y's confidence scores?*)
+            - e.g., compare [1,0,0] to [0.7, 0.1, 0.2]
+                - In this example, a 1.0 is desired but 0.7 is observed
+                - Arrays like [1,0,0] are called **one-hot**
+                - L = -( 1log(0.7) * 0log(0.1) * 0log(0.2) ) ~0.3566
+- Any mention of *log* will always be a natural logarithm (ln) throughout this book
+- Mathmatically, ln(0) = undefined
+    - *E* (*math.e*) to any power is always positive, and there is no *y* resulting in *e<sup>y</sup> = 0*, therefore *ln(0)* is undefined.
+    - So, what is the result for a value very close to 0? The limit is negative infinity for an infinity small *x*, where *x* never reaches 0.
+    - In programming, we just run *E <sup>-inf*</sup> and simplify to zero.
+- No matter which loss function we’ll use, the overall loss is always a mean value of all sample losses.
